@@ -32,10 +32,6 @@ const Footer = () => {
       <div className="xl:grid xl:grid-cols-3 xl:gap-8 py-4">
         <div className="px-4">
           <img src={alabamahvLogo} />
-          <p className="text-sm">
-            Making the world a better place through constructing elegant
-            hierarchies.
-          </p>
           <div className="flex flex-row w-full justify-start space-x-8 py-4 ml-8">
             <a
               href="https://www.facebook.com/alabamahandsandvoices/"
