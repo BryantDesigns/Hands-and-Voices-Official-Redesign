@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import alabamahvLogo from "../assets/images/footer/alabamahvlogo.svg";
 import home from "../assets/icons/home.svg";
@@ -78,52 +78,52 @@ const Footer = () => {
               </h3>
               <ul role="list" className="mt-4 space-y-4">
                 <li>
-                  <a
-                    href="/"
+                  <NavLink
+                    to="/"
                     className="text-base text-gray-500 hover:text-gray-900"
                   >
                     Home
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="/about/who-we-are"
+                  <NavLink
+                    to="/about/who-we-are"
                     className="text-base text-gray-500 hover:text-gray-900"
                   >
                     About
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="/programs/guide"
+                  <NavLink
+                    to="/programs/guide"
                     className="text-base text-gray-500 hover:text-gray-900"
                   >
                     Programs
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="/resources"
+                  <NavLink
+                    to="/resources"
                     className="text-base text-gray-500 hover:text-gray-900"
                   >
                     Resources
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="/membership"
+                  <NavLink
+                    to="/membership"
                     className="text-base text-gray-500 hover:text-gray-900 hover:cursor-pointer"
                   >
                     Membership
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="/admin"
+                  <NavLink
+                    to="/admin"
                     className="text-base text-gray-500 hover:text-gray-900 hover:cursor-pointer"
                   >
                     Admin Portal
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </div>
@@ -161,9 +161,13 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="mt-12 border-t border-gray-200 pt-8">
+      <div className="mt-12 border-t border-gray-200 pt-8 mb-4">
         <p className="text-base text-gray-400 xl:text-center">
-          &copy; 2020 Workflow, Inc. All rights reserved.
+          &copy; 2020{" "}
+          <a className="text-gray-500" href="http://tylerbryant.dev/">
+            Bryant Designs
+          </a>
+          , Inc. All rights reserved.
         </p>
       </div>
     </div>
