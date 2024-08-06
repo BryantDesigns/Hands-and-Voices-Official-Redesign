@@ -1,5 +1,11 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  updateProfile,
+} from "firebase/auth";
 import { auth, db } from "../firebase/firebaseConfig";
 // import { setDoc, doc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
@@ -7,83 +13,81 @@ import { useNavigate } from "react-router-dom";
 const UserContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-	const navigate = useNavigate();
-	const [user, setUser] = useState({});
-	// const createUser = async ({ firstName, lastName, email, phone, password }) => {
-	// 	try {
-	// 		const authUser = await createUserWithEmailAndPassword(auth, email, password);
-	// 		await updateProfile(authUser.user, {
-	// 			displayName: `${firstName}`,
-	// 			phoneNumber: phone,
-	// 		});
-	// 		const userDocRef = doc(db, "users", authUser.user.uid);
-	// 		await setDoc(userDocRef, {
-	// 			profile: {
-	// 				first: firstName,
-	// 				last: lastName,
-	// 				email: email,
-	// 				phone: phone,
-	// 				signUpDate: new Date(),
-	// 				uid: authUser.user.uid,
-	// 				birthday: birthday,
-	// 				podcastNotification: podcastNotification,
-	// 				upComingNotifications: upComingNotifications,
-	// 				blogNotification: blogNotification,
-	// 				weeklyNewsletterNotification: weeklyNewsletterNotification,
-	// 				adminAccess: false,
-	// 				lastLogin: null,
-	// 			},
-	// 		});
-	// 		resetForm();
-	// 		console.log("User document added successfully");
-	// 	} catch (error) {
-	// 		throw error;
-	// 	}
-	// };
+  const navigate = useNavigate();
+  const [user, setUser] = useState({});
+  // const createUser = async ({ firstName, lastName, email, phone, password }) => {
+  // 	try {
+  // 		const authUser = await createUserWithEmailAndPassword(auth, email, password);
+  // 		await updateProfile(authUser.user, {
+  // 			displayName: `${firstName}`,
+  // 			phoneNumber: phone,
+  // 		});
+  // 		const userDocRef = doc(db, "users", authUser.user.uid);
+  // 		await setDoc(userDocRef, {
+  // 			profile: {
+  // 				first: firstName,
+  // 				last: lastName,
+  // 				email: email,
+  // 				phone: phone,
+  // 				signUpDate: new Date(),
+  // 				uid: authUser.user.uid,
+  // 				birthday: birthday,
+  // 				podcastNotification: podcastNotification,
+  // 				upComingNotifications: upComingNotifications,
+  // 				blogNotification: blogNotification,
+  // 				weeklyNewsletterNotification: weeklyNewsletterNotification,
+  // 				adminAccess: false,
+  // 				lastLogin: null,
+  // 			},
+  // 		});
+  // 		resetForm();
+  // 		console.log("User document added successfully");
+  // 	} catch (error) {
+  // 		throw error;
+  // 	}
+  // };
 
-	const signIn = (email, password) => {
-		return signInWithEmailAndPassword(auth, email, password);
-	};
+  const signIn = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
-	// const logout = () => {
-	// 	console.log("working");
-	// 	resetForm();
-	// 	navigate("/");
-	// 	return signOut(auth);
-	// };
+  const logout = () => {
+    navigate("/");
+    return signOut(auth);
+  };
 
-	// useEffect(() => {
-	// 	const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-	// 		// User is authenticated
-	// 		if (currentUser) {
-	// 			setUser(currentUser);
-	// 			console.log("current", currentUser);
-	// 		} else {
-	// 			// User is not authenticated
-	// 			setUser(null);
-	// 			console.log("logged out", currentUser);
-	// 		}
-	// 	});
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      // User is authenticated
+      if (currentUser) {
+        setUser(currentUser);
+        console.log("current", currentUser);
+      } else {
+        // User is not authenticated
+        setUser(null);
+        console.log("logged out", currentUser);
+      }
+    });
 
-	// 	return () => {
-	// 		unsubscribe();
-	// 	};
-	// }, []);
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
-	return (
-		<UserContext.Provider
-			value={{
-				// createUser,
-				user,
-				// logout,
-				signIn,
-			}}
-		>
-			{children}
-		</UserContext.Provider>
-	);
+  return (
+    <UserContext.Provider
+      value={{
+        // createUser,
+        user,
+        logout,
+        signIn,
+      }}
+    >
+      {children}
+    </UserContext.Provider>
+  );
 };
 
 export const UserAuth = () => {
-	return useContext(UserContext);
+  return useContext(UserContext);
 };
