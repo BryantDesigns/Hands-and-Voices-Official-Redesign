@@ -2,7 +2,7 @@ import NavBarLayout from "../layout/NavBarLayout";
 const Header = () => {
 	return (
 		<div>
-			<div className='relative bg-hvblue'>
+			{/* <div className='relative bg-hvblue'>
 				<div className='absolute inset-0'>
 					<img
 						className='h-full w-full object-cover'
@@ -19,7 +19,7 @@ const Header = () => {
 						reach their full potential.
 					</p>
 				</div>
-			</div>
+			</div> */}
 			<NavBarLayout />
 		</div>
 	);
